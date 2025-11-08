@@ -8,7 +8,7 @@ align-items: center;
 
 padding-left: 24px;
 padding-right: 24px;
-background-color: ${(props) => props.theme.background};
+background-color: ${(props)=> props.theme.background};
 `
 
 export const Image = styled.Image`
