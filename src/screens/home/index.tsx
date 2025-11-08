@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect } from 'react';
+import { api } from "../../services/api";
 
 import { TouchableOpacity } from 'react-native';
 import { useAuth } from "../../hooks/auth"; 

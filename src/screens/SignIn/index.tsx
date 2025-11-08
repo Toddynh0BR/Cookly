@@ -1,5 +1,5 @@
+import { useState, useEffect } from "react";
 import * as S from "./styles";
-import { useState } from "react";
 
 import Facebook from "../../assets/facebook.png";
 import Google from "../../assets/google.png";
@@ -9,6 +9,7 @@ import { ButtonOne } from "../../components/buttonOne";
 import { InputOne } from "../../components/inputOne";
 import { TouchableOpacity, Alert } from "react-native";
 
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
@@ -20,6 +21,12 @@ export function SignIn() {
 
     const [identification, setIdentification] = useState('');
     const [password, setPassword] = useState('');
+
+    useEffect(() => {
+     GoogleSignin.configure({
+      webClientId: '535056287367-2059uffoqm9du16k9f53u86tlv8ea1j6.apps.googleusercontent.com', // o mesmo do Google Cloud
+     });
+    }, []);
 
     async function HandleSignIn(){
       if (!identification || !password) {
@@ -57,10 +64,24 @@ export function SignIn() {
     };
 
     async function HandleSignInWith(provider: string) {
-      // Implementar autenticação com provedores externos
+    //  if (!provider) return;
 
-      navigate.navigate('SetPassword' as never)
+    //  if (provider == 'google') {
+    //   try {
+    //    const { idToken } = await GoogleSignin.signIn();
+    
+    //    console.log(idToken)
+    //   } catch (error) {
+    //    console.log('Erro no login:', error);
+    //   }
+
+    //  } else {
+
+    //  }
+
+     
     };
+
 
     return(
      <S.Container>
