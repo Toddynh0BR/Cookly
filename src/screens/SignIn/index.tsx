@@ -7,17 +7,21 @@ import Icon from "../../assets/orange.png";
 
 import { ButtonOne } from "../../components/buttonOne";
 import { InputOne } from "../../components/inputOne";
-import { TouchableOpacity, Alert } from "react-native";
+import { TouchableOpacity, Alert, ActivityIndicator } from "react-native";
 
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { useNavigation } from '@react-navigation/native';
+import { useTheme } from "../../hooks/themeProvider";
 import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
 
 export function SignIn() {
     const navigate = useNavigation();
     const { signIn } = useAuth();
+    const { theme } = useTheme();
+
     const [loading, setLoading] = useState(false);
+    const [loadingGoogle, setLGoogle] = useState(false);
 
     const [identification, setIdentification] = useState('');
     const [password, setPassword] = useState('');
@@ -25,6 +29,7 @@ export function SignIn() {
     useEffect(() => {
      GoogleSignin.configure({
       webClientId: '535056287367-2059uffoqm9du16k9f53u86tlv8ea1j6.apps.googleusercontent.com', // o mesmo do Google Cloud
+      offlineAccess: true,
      });
     }, []);
 
@@ -64,20 +69,42 @@ export function SignIn() {
     };
 
     async function HandleSignInWith(provider: string) {
-    //  if (!provider) return;
+     if (!provider) return;
 
-    //  if (provider == 'google') {
-    //   try {
-    //    const { idToken } = await GoogleSignin.signIn();
-    
-    //    console.log(idToken)
-    //   } catch (error) {
-    //    console.log('Erro no login:', error);
-    //   }
+     if (provider == 'google') {
+      setLGoogle(true);
+      try {
+       const userInfo = await GoogleSignin.signIn();
 
-    //  } else {
+       const id_token = userInfo.data.idToken;
+      
+       const tryLogin = await api.post("/user/signin", 
+        { id_token, provider }, 
+        {
+         validateStatus: (status) => 
+         {
+          return status >= 200 && status < 500; // 404 entra aqui e não dispara catch
+         }
+        })
+      
+       if (tryLogin.status == 200) {
+         const User = tryLogin.data.User;
 
-    //  }
+         signIn(User.name, User.email, User.level, User.img || '');
+       } else {
+        navigate.navigate('SetPassword', { id_token, provider });
+       }
+
+      } catch (error) {
+       console.log('Erro no login:', error);
+       Alert.alert('Erro ao fazer login', error.response.data.message)
+      } finally {
+        setLGoogle(false);
+      }
+
+     } else {
+
+     }
 
      
     };
@@ -138,11 +165,11 @@ export function SignIn() {
 
       <S.OtherSignInView>
        <TouchableOpacity onPress={() => HandleSignInWith('google')}>
-        <S.SocialIconButton source={Google}/>
+        { loadingGoogle ? <ActivityIndicator size={35} color={theme.main}/> : <S.SocialIconButton source={Google}/>}
        </TouchableOpacity>
 
        <TouchableOpacity onPress={() => HandleSignInWith('facebook')}>
-        <S.SocialIconButton source={Facebook}/>
+        { loadingGoogle ? <ActivityIndicator size={35} color={theme.main}/> : <S.SocialIconButton source={Facebook}/>}
        </TouchableOpacity>
       </S.OtherSignInView>
      </S.Container>   

@@ -19,7 +19,8 @@ export function SetLevel() {
     const { signIn } = useAuth();
     const route = useRoute();
 
-    const { name, email, password } = route.params as { name: string, email: string, password: string };
+    const { name, email, password, provider, id_token } = route.params as 
+    { name: string, email: string, password: string, provider: string, id_token: string };
     const [loading, setLoading] = useState(false);
 
     const [level, setLevel] = useState('');
@@ -28,10 +29,9 @@ export function SetLevel() {
      if (!level) return
      setLoading(true);
       
-     try {
+     if (!provider) {
+           try {
       const Response = await api.post('/user/local-signup', { name, email, password, level, check: '' });
-
-      if (Response.data.message != 'Usuário criado com sucesso!') return handleSignup();
 
       signIn(name, email, level, '');
      }catch(error: any) {
@@ -39,6 +39,20 @@ export function SetLevel() {
        Alert.alert('Erro', error.response.data.message)
      } finally {
       setLoading(false);
+     }
+     }else {
+      try {
+       const Response = await api.post('/user/signup', { id_token, provider, password, level });
+
+       const User = Response.data.User;
+
+      signIn(User.name, User.email, User.level, User.img);
+     }catch(error: any) {
+       console.error(error)
+       Alert.alert('Erro', error.response.data.message)
+     } finally {
+      setLoading(false);
+     }
      }
 
     };

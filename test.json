@@ -1,0 +1,22 @@
+{
+    "data": {
+        "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImI1ZTQ0MGFlOTQxZTk5ODFlZTJmYTEzNzZkNDJjNDZkNzMxZGVlM2YiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI1MzUwNTYyODczNjctbzU3Z25qMDc5MWx2dGhiYjltMmNiNWdhY21obzRuNW8uYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI1MzUwNTYyODczNjctMjA1OXVmZm9xbTlkdTE2azlmNTN1ODZ0bHY4ZWExajYuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTU0NjQxOTk1Nzc5MzE4MjQ2ODgiLCJlbWFpbCI6ImdhbGF4eXBsYXk0MUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6Ik1hdGhldXMgQXVndXN0byIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMV2Q3XzloeEVuNHhIQmpxcW9Nd2Rvc0huT1FpY0RUM0NuOV9xWkFUOE9tclR3LTdTNWVBPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6Ik1hdGhldXMiLCJmYW1pbHlfbmFtZSI6IkF1Z3VzdG8iLCJpYXQiOjE3NjI1NzkyODYsImV4cCI6MTc2MjU4Mjg4Nn0.T9JeqDG8Uy8ym7nxhM8O72nFAglB26xZCGxfuzPx0APiEJsjCPxLItkRTYqKp3o1VZFHhhI6Rs_8YwQlbAv9_0mIbZPiRbi_rM4Nfz2FKG6RUhD167_sfx6xC_17YnHQxciQwlK6hmGJfxVowYSUn6hduxE663fuY-U1gE3iduBEiPqK3n81BwF85Lb7DZ7R0FLbVBu9mIm7LEnhLQ7BUPJUHS9McvIU31kzy5L7pibd3hIEihzbBEhNzggxrt5t5FScay23o26p27A8KxEXK-XCOwxeRaF36a6YLv-nXxqK-EczJr4pThMYk5i455D82-JfJK5XkTfEP7Nkg9CMog",
+        "scopes": [
+            "https://www.googleapis.com/auth/userinfo.profile",
+            "https://www.googleapis.com/auth/userinfo.email",
+            "openid",
+            "profile",
+            "email"
+        ],
+        "serverAuthCode": "4/0Ab32j929GdCaX61124fZJLwWyOlFwi8V434ixOMDGGts6hYNnw-071eRDBQrAchT0sYcdQ",
+        "user": {
+            "email": "galaxyplay41@gmail.com",
+            "familyName": "Augusto",
+            "givenName": "Matheus",
+            "id": "115464199577931824688",
+            "name": "Matheus Augusto",
+            "photo": "https://lh3.googleusercontent.com/a/ACg8ocLWd7_9hxEn4xHBjqqoMwdosHnOQicDT3Cn9_qZAT8OmrTw-7S5eA=s96-c"
+        }
+    },
+    "type": "success"
+}
